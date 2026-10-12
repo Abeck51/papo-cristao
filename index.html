@@ -1,661 +1,1695 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Papo Cristão: uma palavra de fé para começar bem o dia. Projeto educativo independente.">
-<title>Papo Cristão - Uma palavra de fé para começar bem o dia</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
-<style>
-/* =========================================================
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Papo Cristão: uma palavra de fé para começar bem o dia. Projeto educativo independente.">
+  <title>Papo Cristão - Uma palavra de fé para começar bem o dia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Lora:wght@500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    /* =========================================================
    1. VARIÁVEIS
    ========================================================= */
-:root {
-  --bg: #faf6ef;
-  --bg-soft: #f2ebdf;
-  --surface: #ffffff;
-  --text: #25303a;
-  --muted: #667380;
-  --primary: #1f5468;
-  --primary-dark: #163f4f;
-  --accent: #d9a441;
-  --accent-soft: #fbefd5;
-  --border: #e6dfd2;
-  --shadow: 0 10px 30px rgba(31, 84, 104, .10);
-  --radius: 18px;
-  --max: 1120px;
-  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
-  --sans: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+    :root {
+      --bg: #faf6ef;
+      --bg-soft: #f2ebdf;
+      --surface: #ffffff;
+      --text: #25303a;
+      --muted: #667380;
+      --primary: #1f5468;
+      --primary-dark: #163f4f;
+      --accent: #d9a441;
+      --accent-soft: #fbefd5;
+      --border: #e6dfd2;
+      --shadow: 0 10px 30px rgba(31, 84, 104, .10);
+      --radius: 18px;
+      --max: 1120px;
+      --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+      --sans: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
 
-  /* Paleta do celular (inspirada no print de referência) */
-  --ph-frame: #f6efe3;
-  --ph-line: #e6d9c6;
-  --ph-screen: #fbf6ec;
-  --ph-card: #fffdf8;
-  --ph-title: #7a2e1d;
-  --ph-text: #4a3a30;
-  --ph-muted: #8a7768;
-  --ph-pill: #efe0cf;
-  --ph-serif: "Lora", Georgia, serif;
-  --ph-sans: "DM Sans", system-ui, sans-serif;
-}
-[data-theme="dark"] {
-  --bg: #11181d;
-  --bg-soft: #172229;
-  --surface: #1b262d;
-  --text: #ecebe6;
-  --muted: #9fadb8;
-  --primary: #7cc1d8;
-  --primary-dark: #a8d9e8;
-  --accent: #e3b255;
-  --accent-soft: #2b2619;
-  --border: #2a3943;
-  --shadow: 0 10px 30px rgba(0, 0, 0, .4);
-}
+      /* Paleta do celular (inspirada no print de referência) */
+      --ph-frame: #f6efe3;
+      --ph-line: #e6d9c6;
+      --ph-screen: #fbf6ec;
+      --ph-card: #fffdf8;
+      --ph-title: #7a2e1d;
+      --ph-text: #4a3a30;
+      --ph-muted: #8a7768;
+      --ph-pill: #efe0cf;
+      --ph-serif: "Lora", Georgia, serif;
+      --ph-sans: "DM Sans", system-ui, sans-serif;
+    }
 
-/* =========================================================
+    [data-theme="dark"] {
+      --bg: #11181d;
+      --bg-soft: #172229;
+      --surface: #1b262d;
+      --text: #ecebe6;
+      --muted: #9fadb8;
+      --primary: #7cc1d8;
+      --primary-dark: #a8d9e8;
+      --accent: #e3b255;
+      --accent-soft: #2b2619;
+      --border: #2a3943;
+      --shadow: 0 10px 30px rgba(0, 0, 0, .4);
+    }
+
+    /* =========================================================
    2. RESET E BASE
    ========================================================= */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.65; transition: background .3s, color .3s; }
-h1, h2, h3 { font-family: var(--serif); line-height: 1.2; font-weight: 700; }
-a { color: inherit; text-decoration: none; }
-button { font: inherit; cursor: pointer; color: inherit; }
-.container { width: min(100% - 2rem, var(--max)); margin-inline: auto; }
-.section { padding: 5rem 0; }
-.section.alt { background: var(--bg-soft); }
-.eyebrow { text-transform: uppercase; letter-spacing: .14em; font-size: .78rem; font-weight: 700; color: var(--accent); margin-bottom: .6rem; }
-.section-head { text-align: center; max-width: 640px; margin: 0 auto 3rem; }
-.section-head h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: .6rem; }
-.section-head p { color: var(--muted); font-size: 1.05rem; }
-:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-.reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
-.reveal.in { opacity: 1; transform: none; }
-@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } .hero-icon { animation: none !important; } }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
 
-/* =========================================================
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      transition: background .3s, color .3s;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: var(--serif);
+      line-height: 1.2;
+      font-weight: 700;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+      color: inherit;
+    }
+
+    .container {
+      width: min(100% - 2rem, var(--max));
+      margin-inline: auto;
+    }
+
+    .section {
+      padding: 5rem 0;
+    }
+
+    .section.alt {
+      background: var(--bg-soft);
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      font-size: .78rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: .6rem;
+    }
+
+    .section-head {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 3rem;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      margin-bottom: .6rem;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 6px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+
+      html {
+        scroll-behavior: auto;
+      }
+
+      .hero-icon {
+        animation: none !important;
+      }
+    }
+
+    /* =========================================================
    3. BOTÕES
    ========================================================= */
-.btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
-  border: 2px solid transparent; border-radius: 999px; padding: .8rem 1.6rem; font-weight: 600;
-  background: var(--primary); color: #fff; transition: transform .15s, background .2s, box-shadow .2s;
-}
-.btn:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: var(--shadow); }
-[data-theme="dark"] .btn { color: #0e1519; }
-.btn-ghost { background: transparent; color: var(--primary); border-color: var(--primary); }
-.btn-ghost:hover { background: var(--primary); color: #fff; }
-[data-theme="dark"] .btn-ghost:hover { color: #0e1519; }
-.btn-link { background: none; color: var(--primary); padding: .8rem .4rem; border-radius: 8px; }
-.btn-link:hover { background: none; box-shadow: none; text-decoration: underline; transform: none; }
-.btn-sm { padding: .5rem 1.1rem; font-size: .92rem; }
-.icon-btn { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface); display: grid; place-items: center; font-size: 1.05rem; }
-.icon-btn:hover { border-color: var(--primary); }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      border: 2px solid transparent;
+      border-radius: 999px;
+      padding: .8rem 1.6rem;
+      font-weight: 600;
+      background: var(--primary);
+      color: #fff;
+      transition: transform .15s, background .2s, box-shadow .2s;
+    }
 
-/* =========================================================
+    .btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    [data-theme="dark"] .btn {
+      color: #0e1519;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .btn-ghost:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    [data-theme="dark"] .btn-ghost:hover {
+      color: #0e1519;
+    }
+
+    .btn-link {
+      background: none;
+      color: var(--primary);
+      padding: .8rem .4rem;
+      border-radius: 8px;
+    }
+
+    .btn-link:hover {
+      background: none;
+      box-shadow: none;
+      text-decoration: underline;
+      transform: none;
+    }
+
+    .btn-sm {
+      padding: .5rem 1.1rem;
+      font-size: .92rem;
+    }
+
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      display: grid;
+      place-items: center;
+      font-size: 1.05rem;
+    }
+
+    .icon-btn:hover {
+      border-color: var(--primary);
+    }
+
+    /* =========================================================
    4. CABEÇALHO
    ========================================================= */
-.header { position: sticky; top: 0; z-index: 60; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
-.header .container { display: flex; align-items: center; justify-content: space-between; height: 70px; gap: 1rem; }
-.logo { display: flex; align-items: center; gap: .55rem; font-family: var(--serif); font-size: 1.35rem; font-weight: 700; color: var(--primary); }
-.logo svg { width: 34px; height: 34px; flex-shrink: 0; }
-.nav { display: flex; align-items: center; gap: 1.5rem; }
-.nav a:not(.btn) { color: var(--muted); font-weight: 500; font-size: .96rem; padding: .3rem 0; border-bottom: 2px solid transparent; transition: color .2s, border-color .2s; }
-.nav a:not(.btn):hover, .nav a.active { color: var(--primary); border-color: var(--accent); }
-.header-actions { display: flex; align-items: center; gap: .5rem; }
-.menu-toggle { display: none; }
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      background: color-mix(in srgb, var(--bg) 85%, transparent);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
 
-/* =========================================================
+    .header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+      gap: 1rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: .55rem;
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .logo svg {
+      width: 34px;
+      height: 34px;
+      flex-shrink: 0;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav a:not(.btn) {
+      color: var(--muted);
+      font-weight: 500;
+      font-size: .96rem;
+      padding: .3rem 0;
+      border-bottom: 2px solid transparent;
+      transition: color .2s, border-color .2s;
+    }
+
+    .nav a:not(.btn):hover,
+    .nav a.active {
+      color: var(--primary);
+      border-color: var(--accent);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .menu-toggle {
+      display: none;
+    }
+
+    /* =========================================================
    5. HERO (texto + celular na lateral direita)
    ========================================================= */
-.hero {
-  position: relative; overflow: hidden; padding: 4.5rem 0 4rem;
-  background:
-    radial-gradient(900px 400px at 70% -10%, color-mix(in srgb, var(--accent) 28%, transparent), transparent 70%),
-    linear-gradient(180deg, var(--bg-soft), var(--bg));
-}
-.hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 3rem; align-items: center; }
-.hero-icon { width: 84px; height: 84px; margin: 0 0 1.2rem; color: var(--primary); filter: drop-shadow(0 8px 16px rgba(31,84,104,.25)); animation: float 5s ease-in-out infinite; }
-@keyframes float { 50% { transform: translateY(-8px); } }
-.hero h1 { font-size: clamp(2.6rem, 7vw, 4.4rem); color: var(--primary); letter-spacing: -.01em; }
-.hero .tagline { font-family: var(--serif); font-size: clamp(1.2rem, 3vw, 1.7rem); margin: .8rem 0 1rem; }
-.hero p.lead { color: var(--muted); max-width: 520px; margin: 0 0 2rem; font-size: 1.08rem; }
-.hero-buttons { display: flex; gap: .8rem; flex-wrap: wrap; align-items: center; }
-.phone-wrap { display: flex; justify-content: center; }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 4.5rem 0 4rem;
+      background:
+        radial-gradient(900px 400px at 70% -10%, color-mix(in srgb, var(--accent) 28%, transparent), transparent 70%),
+        linear-gradient(180deg, var(--bg-soft), var(--bg));
+    }
 
-.quote-band { text-align: center; padding: 3.5rem 1rem; font-family: var(--serif); font-size: clamp(1.4rem, 3.4vw, 2.1rem); }
-.quote-band span { color: var(--accent); font-style: italic; display: block; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 3rem;
+      align-items: center;
+    }
 
-/* =========================================================
+    .hero-icon {
+      width: 84px;
+      height: 84px;
+      margin: 0 0 1.2rem;
+      color: var(--primary);
+      filter: drop-shadow(0 8px 16px rgba(31, 84, 104, .25));
+      animation: float 5s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.6rem, 7vw, 4.4rem);
+      color: var(--primary);
+      letter-spacing: -.01em;
+    }
+
+    .hero .tagline {
+      font-family: var(--serif);
+      font-size: clamp(1.2rem, 3vw, 1.7rem);
+      margin: .8rem 0 1rem;
+    }
+
+    .hero p.lead {
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 0 2rem;
+      font-size: 1.08rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: .8rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .phone-wrap {
+      display: flex;
+      justify-content: center;
+    }
+
+    .quote-band {
+      text-align: center;
+      padding: 3.5rem 1rem;
+      font-family: var(--serif);
+      font-size: clamp(1.4rem, 3.4vw, 2.1rem);
+    }
+
+    .quote-band span {
+      color: var(--accent);
+      font-style: italic;
+      display: block;
+    }
+
+    /* =========================================================
    6. SIMULADOR DE CELULAR
    ========================================================= */
-.phone {
-  width: 336px; max-width: 100%; padding: 10px; border-radius: 48px;
-  background: var(--ph-frame); border: 1.5px solid var(--ph-line);
-  box-shadow: 0 30px 60px rgba(90, 55, 30, .18), 0 6px 16px rgba(90, 55, 30, .10);
-  font-family: var(--ph-sans); color: var(--ph-text);
-}
-.screen {
-  position: relative; height: 640px; display: flex; flex-direction: column; overflow: hidden;
-  background: var(--ph-screen); border: 1.5px solid var(--ph-line); border-radius: 38px;
-}
-.screen-body { flex: 1; overflow-y: auto; padding: 30px 22px 14px; scrollbar-width: thin; scrollbar-color: var(--ph-line) transparent; animation: fade .3s ease; }
-@keyframes fade { from { opacity: 0; transform: translateY(6px); } }
+    .phone {
+      width: 336px;
+      max-width: 100%;
+      padding: 10px;
+      border-radius: 48px;
+      background: var(--ph-frame);
+      border: 1.5px solid var(--ph-line);
+      box-shadow: 0 30px 60px rgba(90, 55, 30, .18), 0 6px 16px rgba(90, 55, 30, .10);
+      font-family: var(--ph-sans);
+      color: var(--ph-text);
+    }
 
-.ph-title { font-family: var(--ph-serif); font-weight: 700; font-size: 2rem; color: var(--ph-title); line-height: 1.1; }
-.ph-date { font-size: .78rem; color: var(--ph-muted); margin: .45rem 0 1.4rem; }
+    .screen {
+      position: relative;
+      height: 640px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: var(--ph-screen);
+      border: 1.5px solid var(--ph-line);
+      border-radius: 38px;
+    }
 
-.ph-card { background: var(--ph-card); border: 1.5px solid var(--ph-line); border-radius: 22px; padding: 1.15rem 1.1rem 1.1rem; }
-.ph-label { font-size: .72rem; font-weight: 700; color: var(--ph-title); margin-bottom: .75rem; }
-.ph-verse { font-family: var(--ph-serif); font-weight: 600; font-size: 1.08rem; line-height: 1.42; color: #2c2118; margin-bottom: .8rem; }
-.ph-ref { font-size: .72rem; font-weight: 700; color: var(--ph-title); margin-bottom: 1.2rem; }
+    .screen-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 30px 22px 14px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--ph-line) transparent;
+      animation: fade .3s ease;
+    }
 
-.ph-thought { display: block; width: 100%; text-align: left; background: none; border: 0; padding: 0; border-radius: 10px; }
-.ph-thought b { display: block; font-size: .85rem; color: #2c2118; margin-bottom: .35rem; }
-.ph-thought .clamp { font-size: .82rem; line-height: 1.5; color: var(--ph-muted); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-.ph-thought:hover b { color: var(--ph-title); }
-.ph-more { display: inline-block; font-size: .72rem; font-weight: 700; color: var(--ph-title); margin-top: .35rem; }
+    @keyframes fade {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+    }
 
-.ph-actions { display: flex; gap: .4rem; margin-top: 1rem; }
-.ph-pill {
-  flex: 1 1 auto; min-width: 0; display: inline-flex; align-items: center; justify-content: center; gap: .3rem;
-  background: var(--ph-pill); color: var(--ph-title); border: 0; border-radius: 999px;
-  padding: .55rem .35rem; font-size: .7rem; font-weight: 700; white-space: nowrap; transition: background .2s, transform .15s;
-}
-.ph-pill:hover { background: #e8d3bd; transform: translateY(-1px); }
-.ph-pill.on { background: var(--ph-title); color: #fff; }
-.ph-pill svg { width: 13px; height: 13px; flex-shrink: 0; }
+    .ph-title {
+      font-family: var(--ph-serif);
+      font-weight: 700;
+      font-size: 2rem;
+      color: var(--ph-title);
+      line-height: 1.1;
+    }
 
-/* Barra inferior */
-.ph-nav { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1.5px solid var(--ph-line); padding: 10px 6px 14px; background: var(--ph-screen); }
-.ph-nav button { background: none; border: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: .62rem; font-weight: 500; color: #6f5a4d; padding: 4px 0; border-radius: 12px; }
-.ph-nav button svg { width: 22px; height: 22px; }
-.ph-nav button[aria-current="page"] { color: var(--ph-title); font-weight: 700; }
-.ph-nav button:hover { color: var(--ph-title); }
+    .ph-date {
+      font-size: .78rem;
+      color: var(--ph-muted);
+      margin: .45rem 0 1.4rem;
+    }
 
-/* Listas dentro do celular */
-.ph-chips { display: flex; gap: .4rem; overflow-x: auto; margin: .9rem 0 1rem; padding-bottom: 4px; scrollbar-width: none; }
-.ph-chips::-webkit-scrollbar { display: none; }
-.ph-chip { flex-shrink: 0; background: var(--ph-card); border: 1.5px solid var(--ph-line); color: var(--ph-text); border-radius: 999px; padding: .3rem .8rem; font-size: .72rem; font-weight: 500; }
-.ph-chip.active, .ph-chip:hover { background: var(--ph-title); border-color: var(--ph-title); color: #fff; }
-.ph-list { display: grid; gap: .8rem; }
-.ph-item { background: var(--ph-card); border: 1.5px solid var(--ph-line); border-radius: 18px; padding: .9rem 1rem; }
-.ph-item q { display: block; quotes: none; font-family: var(--ph-serif); font-weight: 600; font-size: .95rem; line-height: 1.4; color: #2c2118; }
-.ph-meta { display: flex; justify-content: space-between; align-items: center; gap: .5rem; margin-top: .55rem; font-size: .7rem; color: var(--ph-muted); }
-.ph-meta button { background: none; border: 0; font-size: .72rem; font-weight: 700; color: var(--ph-title); }
-.ph-meta .heart { font-size: 1.15rem; color: var(--ph-muted); }
-.ph-meta .heart.on { color: #c4524a; }
-.ph-empty { text-align: center; color: var(--ph-muted); font-size: .85rem; padding: 3rem .5rem; }
-.ph-empty .big { display: block; font-size: 2.2rem; margin-bottom: .4rem; }
+    .ph-card {
+      background: var(--ph-card);
+      border: 1.5px solid var(--ph-line);
+      border-radius: 22px;
+      padding: 1.15rem 1.1rem 1.1rem;
+    }
 
-/* Modal dentro do celular */
-.sheet { position: absolute; inset: 0; z-index: 5; display: none; align-items: flex-end; background: rgba(62, 36, 20, .38); backdrop-filter: blur(2px); }
-.sheet.open { display: flex; animation: fadeBg .25s ease; }
-.sheet.center { align-items: center; padding: 0 22px; }
-@keyframes fadeBg { from { opacity: 0; } }
-.sheet-card { position: relative; width: 100%; max-height: 86%; overflow-y: auto; background: var(--ph-card); border-radius: 28px 28px 0 0; padding: 26px 22px 24px; animation: rise .3s ease; }
-.sheet.center .sheet-card { border-radius: 26px; text-align: center; padding: 28px 22px 22px; }
-@keyframes rise { from { transform: translateY(40px); opacity: 0; } }
-.sheet-close { position: absolute; top: 12px; right: 12px; width: 32px; height: 32px; border-radius: 50%; border: 0; background: var(--ph-pill); color: var(--ph-title); font-size: .95rem; }
-.sheet-tag { font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ph-title); }
-.sheet-card h3 { font-family: var(--ph-serif); font-size: 1.35rem; color: var(--ph-title); margin: .2rem 0 .3rem; }
-.sheet-ref { font-size: .75rem; color: var(--ph-muted); margin-bottom: 1rem; }
-.sheet-card p { font-size: .9rem; line-height: 1.65; color: var(--ph-text); margin-bottom: .85rem; }
-.sheet-card .big-ico { font-size: 2.4rem; display: block; margin-bottom: .4rem; }
-.sheet-card .ph-pill { width: 100%; flex: none; margin-top: .6rem; padding: .75rem; font-size: .82rem; }
+    .ph-label {
+      font-size: .72rem;
+      font-weight: 700;
+      color: var(--ph-title);
+      margin-bottom: .75rem;
+    }
 
-/* =========================================================
+    .ph-verse {
+      font-family: var(--ph-serif);
+      font-weight: 600;
+      font-size: 1.08rem;
+      line-height: 1.42;
+      color: #2c2118;
+      margin-bottom: .8rem;
+    }
+
+    .ph-ref {
+      font-size: .72rem;
+      font-weight: 700;
+      color: var(--ph-title);
+      margin-bottom: 1.2rem;
+    }
+
+    .ph-thought {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: 0;
+      padding: 0;
+      border-radius: 10px;
+    }
+
+    .ph-thought b {
+      display: block;
+      font-size: .85rem;
+      color: #2c2118;
+      margin-bottom: .35rem;
+    }
+
+    .ph-thought .clamp {
+      font-size: .82rem;
+      line-height: 1.5;
+      color: var(--ph-muted);
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .ph-thought:hover b {
+      color: var(--ph-title);
+    }
+
+    .ph-more {
+      display: inline-block;
+      font-size: .72rem;
+      font-weight: 700;
+      color: var(--ph-title);
+      margin-top: .35rem;
+    }
+
+    .ph-actions {
+      display: flex;
+      gap: .4rem;
+      margin-top: 1rem;
+    }
+
+    .ph-pill {
+      flex: 1 1 auto;
+      min-width: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .3rem;
+      background: var(--ph-pill);
+      color: var(--ph-title);
+      border: 0;
+      border-radius: 999px;
+      padding: .55rem .35rem;
+      font-size: .7rem;
+      font-weight: 700;
+      white-space: nowrap;
+      transition: background .2s, transform .15s;
+    }
+
+    .ph-pill:hover {
+      background: #e8d3bd;
+      transform: translateY(-1px);
+    }
+
+    .ph-pill.on {
+      background: var(--ph-title);
+      color: #fff;
+    }
+
+    .ph-pill svg {
+      width: 13px;
+      height: 13px;
+      flex-shrink: 0;
+    }
+
+    /* Barra inferior */
+    .ph-nav {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1.5px solid var(--ph-line);
+      padding: 10px 6px 14px;
+      background: var(--ph-screen);
+    }
+
+    .ph-nav button {
+      background: none;
+      border: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      font-size: .62rem;
+      font-weight: 500;
+      color: #6f5a4d;
+      padding: 4px 0;
+      border-radius: 12px;
+    }
+
+    .ph-nav button svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .ph-nav button[aria-current="page"] {
+      color: var(--ph-title);
+      font-weight: 700;
+    }
+
+    .ph-nav button:hover {
+      color: var(--ph-title);
+    }
+
+    /* Listas dentro do celular */
+    .ph-chips {
+      display: flex;
+      gap: .4rem;
+      overflow-x: auto;
+      margin: .9rem 0 1rem;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+
+    .ph-chips::-webkit-scrollbar {
+      display: none;
+    }
+
+    .ph-chip {
+      flex-shrink: 0;
+      background: var(--ph-card);
+      border: 1.5px solid var(--ph-line);
+      color: var(--ph-text);
+      border-radius: 999px;
+      padding: .3rem .8rem;
+      font-size: .72rem;
+      font-weight: 500;
+    }
+
+    .ph-chip.active,
+    .ph-chip:hover {
+      background: var(--ph-title);
+      border-color: var(--ph-title);
+      color: #fff;
+    }
+
+    .ph-list {
+      display: grid;
+      gap: .8rem;
+    }
+
+    .ph-item {
+      background: var(--ph-card);
+      border: 1.5px solid var(--ph-line);
+      border-radius: 18px;
+      padding: .9rem 1rem;
+    }
+
+    .ph-item q {
+      display: block;
+      quotes: none;
+      font-family: var(--ph-serif);
+      font-weight: 600;
+      font-size: .95rem;
+      line-height: 1.4;
+      color: #2c2118;
+    }
+
+    .ph-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: .5rem;
+      margin-top: .55rem;
+      font-size: .7rem;
+      color: var(--ph-muted);
+    }
+
+    .ph-meta button {
+      background: none;
+      border: 0;
+      font-size: .72rem;
+      font-weight: 700;
+      color: var(--ph-title);
+    }
+
+    .ph-meta .heart {
+      font-size: 1.15rem;
+      color: var(--ph-muted);
+    }
+
+    .ph-meta .heart.on {
+      color: #c4524a;
+    }
+
+    .ph-empty {
+      text-align: center;
+      color: var(--ph-muted);
+      font-size: .85rem;
+      padding: 3rem .5rem;
+    }
+
+    .ph-empty .big {
+      display: block;
+      font-size: 2.2rem;
+      margin-bottom: .4rem;
+    }
+
+    /* Modal dentro do celular */
+    .sheet {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      display: none;
+      align-items: flex-end;
+      background: rgba(62, 36, 20, .38);
+      backdrop-filter: blur(2px);
+    }
+
+    .sheet.open {
+      display: flex;
+      animation: fadeBg .25s ease;
+    }
+
+    .sheet.center {
+      align-items: center;
+      padding: 0 22px;
+    }
+
+    @keyframes fadeBg {
+      from {
+        opacity: 0;
+      }
+    }
+
+    .sheet-card {
+      position: relative;
+      width: 100%;
+      max-height: 86%;
+      overflow-y: auto;
+      background: var(--ph-card);
+      border-radius: 28px 28px 0 0;
+      padding: 26px 22px 24px;
+      animation: rise .3s ease;
+    }
+
+    .sheet.center .sheet-card {
+      border-radius: 26px;
+      text-align: center;
+      padding: 28px 22px 22px;
+    }
+
+    @keyframes rise {
+      from {
+        transform: translateY(40px);
+        opacity: 0;
+      }
+    }
+
+    .sheet-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 0;
+      background: var(--ph-pill);
+      color: var(--ph-title);
+      font-size: .95rem;
+    }
+
+    .sheet-tag {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--ph-title);
+    }
+
+    .sheet-card h3 {
+      font-family: var(--ph-serif);
+      font-size: 1.35rem;
+      color: var(--ph-title);
+      margin: .2rem 0 .3rem;
+    }
+
+    .sheet-ref {
+      font-size: .75rem;
+      color: var(--ph-muted);
+      margin-bottom: 1rem;
+    }
+
+    .sheet-card p {
+      font-size: .9rem;
+      line-height: 1.65;
+      color: var(--ph-text);
+      margin-bottom: .85rem;
+    }
+
+    .sheet-card .big-ico {
+      font-size: 2.4rem;
+      display: block;
+      margin-bottom: .4rem;
+    }
+
+    .sheet-card .ph-pill {
+      width: 100%;
+      flex: none;
+      margin-top: .6rem;
+      padding: .75rem;
+      font-size: .82rem;
+    }
+
+    /* =========================================================
    7. CARDS (como funciona / recursos / instalar)
    ========================================================= */
-.cards-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
-.cards-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; }
-.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.7rem; transition: transform .2s, box-shadow .2s, border-color .2s; }
-.card:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: var(--accent); }
-.card .ico { width: 52px; height: 52px; display: grid; place-items: center; font-size: 1.6rem; background: var(--accent-soft); border-radius: 16px; margin-bottom: 1rem; }
-.card h3 { font-size: 1.18rem; margin-bottom: .4rem; }
-.card p { color: var(--muted); font-size: .96rem; }
-.step-num { font-family: var(--serif); font-size: 2.6rem; color: var(--accent); line-height: 1; margin-bottom: .6rem; }
+    .cards-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.4rem;
+    }
 
-.cta { text-align: center; }
-.cta-icon { width: 76px; height: 76px; margin: 0 auto 1rem; color: var(--primary); }
-.cta h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 1.4rem; }
-.cta .row { display: flex; gap: .6rem; flex-wrap: wrap; justify-content: center; margin-bottom: 3rem; }
+    .cards-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+    }
 
-.privacy-list { display: grid; gap: 1rem; max-width: 720px; margin: 0 auto 1.8rem; }
-.privacy-item { display: flex; gap: 1rem; align-items: flex-start; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.2rem 1.4rem; }
-.privacy-item .ico { font-size: 1.5rem; }
-.privacy-item p { color: var(--muted); }
-.privacy-links { display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap; }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.7rem;
+      transition: transform .2s, box-shadow .2s, border-color .2s;
+    }
 
-.faq { max-width: 760px; margin-inline: auto; display: grid; gap: .8rem; }
-.faq details { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.1rem 1.4rem; transition: border-color .2s; }
-.faq details[open] { border-color: var(--accent); }
-.faq summary { font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
-.faq summary::-webkit-details-marker { display: none; }
-.faq summary::after { content: "+"; color: var(--accent); font-size: 1.4rem; line-height: 1; transition: transform .2s; }
-.faq details[open] summary::after { transform: rotate(45deg); }
-.faq p { color: var(--muted); margin-top: .7rem; }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+      border-color: var(--accent);
+    }
 
-/* =========================================================
+    .card .ico {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      font-size: 1.6rem;
+      background: var(--accent-soft);
+      border-radius: 16px;
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      font-size: 1.18rem;
+      margin-bottom: .4rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: .96rem;
+    }
+
+    .step-num {
+      font-family: var(--serif);
+      font-size: 2.6rem;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: .6rem;
+    }
+
+    .cta {
+      text-align: center;
+    }
+
+    .cta-icon {
+      width: 76px;
+      height: 76px;
+      margin: 0 auto 1rem;
+      color: var(--primary);
+    }
+
+    .cta h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      margin-bottom: 1.4rem;
+    }
+
+    .cta .row {
+      display: flex;
+      gap: .6rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+
+    .privacy-list {
+      display: grid;
+      gap: 1rem;
+      max-width: 720px;
+      margin: 0 auto 1.8rem;
+    }
+
+    .privacy-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.4rem;
+    }
+
+    .privacy-item .ico {
+      font-size: 1.5rem;
+    }
+
+    .privacy-item p {
+      color: var(--muted);
+    }
+
+    .privacy-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .faq {
+      max-width: 760px;
+      margin-inline: auto;
+      display: grid;
+      gap: .8rem;
+    }
+
+    .faq details {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.1rem 1.4rem;
+      transition: border-color .2s;
+    }
+
+    .faq details[open] {
+      border-color: var(--accent);
+    }
+
+    .faq summary {
+      font-weight: 700;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .faq summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq summary::after {
+      content: "+";
+      color: var(--accent);
+      font-size: 1.4rem;
+      line-height: 1;
+      transition: transform .2s;
+    }
+
+    .faq details[open] summary::after {
+      transform: rotate(45deg);
+    }
+
+    .faq p {
+      color: var(--muted);
+      margin-top: .7rem;
+    }
+
+    /* =========================================================
    8. RODAPÉ, MODAIS DA PÁGINA E TOAST
    ========================================================= */
-.footer { border-top: 1px solid var(--border); padding: 2.5rem 0; }
-.footer .container { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
-.footer p { color: var(--muted); font-size: .92rem; margin-top: .3rem; }
-.footer-links { display: flex; gap: 1.3rem; flex-wrap: wrap; font-size: .93rem; color: var(--muted); }
-.footer-links a:hover { color: var(--primary); }
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 0;
+    }
 
-dialog { border: 0; border-radius: 24px; padding: 2rem; width: min(92vw, 520px); background: var(--surface); color: var(--text); box-shadow: 0 30px 80px rgba(0,0,0,.35); margin: auto; }
-dialog::backdrop { background: rgba(10, 18, 24, .55); backdrop-filter: blur(3px); }
-dialog h2 { font-size: 1.5rem; margin-bottom: .8rem; }
-dialog h3 { font-size: 1.05rem; margin: 1.1rem 0 .3rem; }
-dialog p, dialog li { color: var(--muted); font-size: .96rem; }
-dialog ol, dialog ul { padding-left: 1.2rem; display: grid; gap: .3rem; }
-dialog .close { float: right; }
-.toast { position: fixed; bottom: 24px; left: 50%; transform: translate(-50%, 90px); background: var(--text); color: var(--bg); padding: .7rem 1.3rem; border-radius: 999px; z-index: 300; transition: transform .3s; font-size: .93rem; }
-.toast.show { transform: translate(-50%, 0); }
+    .footer .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
 
-/* =========================================================
+    .footer p {
+      color: var(--muted);
+      font-size: .92rem;
+      margin-top: .3rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.3rem;
+      flex-wrap: wrap;
+      font-size: .93rem;
+      color: var(--muted);
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+
+    dialog {
+      border: 0;
+      border-radius: 24px;
+      padding: 2rem;
+      width: min(92vw, 520px);
+      background: var(--surface);
+      color: var(--text);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, .35);
+      margin: auto;
+    }
+
+    dialog::backdrop {
+      background: rgba(10, 18, 24, .55);
+      backdrop-filter: blur(3px);
+    }
+
+    dialog h2 {
+      font-size: 1.5rem;
+      margin-bottom: .8rem;
+    }
+
+    dialog h3 {
+      font-size: 1.05rem;
+      margin: 1.1rem 0 .3rem;
+    }
+
+    dialog p,
+    dialog li {
+      color: var(--muted);
+      font-size: .96rem;
+    }
+
+    dialog ol,
+    dialog ul {
+      padding-left: 1.2rem;
+      display: grid;
+      gap: .3rem;
+    }
+
+    dialog .close {
+      float: right;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translate(-50%, 90px);
+      background: var(--text);
+      color: var(--bg);
+      padding: .7rem 1.3rem;
+      border-radius: 999px;
+      z-index: 300;
+      transition: transform .3s;
+      font-size: .93rem;
+    }
+
+    .toast.show {
+      transform: translate(-50%, 0);
+    }
+
+    /* =========================================================
    9. RESPONSIVO
    ========================================================= */
-@media (max-width: 960px) { .cards-4 { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 860px) {
-  .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 2.5rem; }
-  .hero-icon { margin-inline: auto; }
-  .hero p.lead { margin-inline: auto; }
-  .hero-buttons { justify-content: center; }
-}
-@media (max-width: 820px) {
-  .section { padding: 3.5rem 0; }
-  .cards-3 { grid-template-columns: 1fr; }
-  .menu-toggle { display: grid; }
-  .nav { position: absolute; top: 70px; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: .2rem; padding: 1rem 1.4rem 1.5rem; background: var(--bg); border-bottom: 1px solid var(--border); display: none; }
-  .nav.open { display: flex; }
-  .nav a:not(.btn) { padding: .7rem 0; border-bottom: 1px solid var(--border); }
-}
-@media (max-width: 520px) { .cards-4 { grid-template-columns: 1fr; } .footer .container { flex-direction: column; text-align: center; } .screen { height: 600px; } }
-</style>
+    @media (max-width: 960px) {
+      .cards-4 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 860px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2.5rem;
+      }
+
+      .hero-icon {
+        margin-inline: auto;
+      }
+
+      .hero p.lead {
+        margin-inline: auto;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .section {
+        padding: 3.5rem 0;
+      }
+
+      .cards-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .menu-toggle {
+        display: grid;
+      }
+
+      .nav {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: .2rem;
+        padding: 1rem 1.4rem 1.5rem;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+        display: none;
+      }
+
+      .nav.open {
+        display: flex;
+      }
+
+      .nav a:not(.btn) {
+        padding: .7rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+    }
+
+    @media (max-width: 520px) {
+      .cards-4 {
+        grid-template-columns: 1fr;
+      }
+
+      .footer .container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .screen {
+        height: 600px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- Símbolos SVG reaproveitados por <use> -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="mark" viewBox="0 0 64 64">
-    <path d="M10 14a8 8 0 0 1 8-8h28a8 8 0 0 1 8 8v22a8 8 0 0 1-8 8H30l-12 11V44h0a8 8 0 0 1-8-8V14Z" fill="currentColor"/>
-    <path d="M32 38.5s-9.5-5.8-9.5-12.1A5.4 5.4 0 0 1 32 23a5.4 5.4 0 0 1 9.5 3.4c0 6.3-9.5 12.1-9.5 12.1Z" fill="#fff" opacity=".95"/>
-    <path d="M32 20.5v14M26.8 25.5h10.4" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
-  </symbol>
-  <!-- Ícones de traço (estilo outline) usados no celular -->
-  <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></symbol>
-  <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 1 0-8-4.9L3 21l4.2-1A9 9 0 0 0 12 21z"/></symbol>
-  <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
-  <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5s-8-4.9-8-11A4.6 4.6 0 0 1 12 6.6a4.6 4.6 0 0 1 8 2.9c0 6.1-8 11-8 11z"/></symbol>
-  <symbol id="i-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="2.6"/><circle cx="6" cy="12" r="2.6"/><circle cx="18" cy="19" r="2.6"/><path d="m8.3 10.8 7.4-4.3M8.3 13.2l7.4 4.3"/></symbol>
-  <symbol id="i-pray" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c-2.6-2-5-4.2-5-8 0-2.6 1.6-4.5 3-6.2L12 3l2 3.8c1.4 1.7 3 3.6 3 6.2 0 3.800-2.400 6-5 8z"/><path d="M12 8v13"/></symbol>
-</svg>
+  <!-- Símbolos SVG reaproveitados por <use> -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="mark" viewBox="0 0 64 64">
+      <path d="M10 14a8 8 0 0 1 8-8h28a8 8 0 0 1 8 8v22a8 8 0 0 1-8 8H30l-12 11V44h0a8 8 0 0 1-8-8V14Z"
+        fill="currentColor" />
+      <path d="M32 38.5s-9.5-5.8-9.5-12.1A5.4 5.4 0 0 1 32 23a5.4 5.4 0 0 1 9.5 3.4c0 6.3-9.5 12.1-9.5 12.1Z"
+        fill="#fff" opacity=".95" />
+      <path d="M32 20.5v14M26.8 25.5h10.4" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" />
+    </symbol>
+    <!-- Ícones de traço (estilo outline) usados no celular -->
+    <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+      stroke-linejoin="round">
+      <path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z" />
+    </symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+      stroke-linejoin="round">
+      <path d="M12 21a9 9 0 1 0-8-4.9L3 21l4.2-1A9 9 0 0 0 12 21z" />
+    </symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+      stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3 2" />
+    </symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+      stroke-linejoin="round">
+      <path d="M12 20.5s-8-4.9-8-11A4.6 4.6 0 0 1 12 6.6a4.6 4.6 0 0 1 8 2.9c0 6.1-8 11-8 11z" />
+    </symbol>
+    <symbol id="i-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+      stroke-linejoin="round">
+      <circle cx="18" cy="5" r="2.6" />
+      <circle cx="6" cy="12" r="2.6" />
+      <circle cx="18" cy="19" r="2.6" />
+      <path d="m8.3 10.8 7.4-4.3M8.3 13.2l7.4 4.3" />
+    </symbol>
+    <symbol id="i-pray" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+      stroke-linejoin="round">
+      <path d="M12 21c-2.6-2-5-4.2-5-8 0-2.6 1.6-4.5 3-6.2L12 3l2 3.8c1.4 1.7 3 3.6 3 6.2 0 3.800-2.400 6-5 8z" />
+      <path d="M12 8v13" />
+    </symbol>
+  </svg>
 
-<!-- ================= CABEÇALHO ================= -->
-<header class="header">
-  <div class="container">
-    <a href="#inicio" class="logo" aria-label="Papo Cristão, início">
-      <svg><use href="#mark"/></svg> Papo Cristão
-    </a>
-    <nav class="nav" id="nav" aria-label="Principal">
-      <a href="#inicio">Início</a>
-      <a href="#como-funciona">Como funciona</a>
-      <a href="#recursos">Recursos</a>
-      <a href="#instalar">Instalar</a>
-      <a href="#privacidade">Privacidade</a>
-      <a href="#app" class="btn btn-sm">Abrir app</a>
-    </nav>
-    <div class="header-actions">
-      <button class="icon-btn" id="themeBtn" aria-label="Alternar tema claro e escuro">🌙</button>
-      <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">☰</button>
-    </div>
-  </div>
-</header>
-
-<main>
-<!-- ================= HERO + CELULAR ================= -->
-<section class="hero" id="inicio">
-  <div class="container hero-grid">
-    <div>
-      <svg class="hero-icon" aria-hidden="true"><use href="#mark"/></svg>
-      <h1>Papo Cristão</h1>
-      <p class="tagline">Uma palavra de fé para começar bem o dia.</p>
-      <p class="lead">Um momento de paz na sua rotina: um versículo, um pensamento curto e um convite para respirar fundo e seguir com esperança.</p>
-      <div class="hero-buttons">
-        <a href="#app" class="btn" data-goto="hoje">Abrir app</a>
-        <button class="btn btn-ghost" data-open="dlgMobile">Usar no celular</button>
-        <a href="#como-funciona" class="btn btn-link">Como funciona →</a>
+  <!-- ================= CABEÇALHO ================= -->
+  <header class="header">
+    <div class="container">
+      <a href="#inicio" class="logo" aria-label="Papo Cristão, início">
+        <svg>
+          <use href="#mark" />
+        </svg> Papo Cristão
+      </a>
+      <nav class="nav" id="nav" aria-label="Principal">
+        <a href="#inicio">Início</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#recursos">Recursos</a>
+        <a href="#instalar">Instalar</a>
+        <a href="#privacidade">Privacidade</a>
+        <a href="https://github.com/Abeck51/papo-cristao/releases/download/v1.0.0/app-release.apk" class=" btn
+          btn-sm">Baixar app</a>
+        <!--<a href="https://github.com/Abeck51/papo-cristao/releases/download/v1.0.0/app-release.apk" class="download-btn" download>
+    Baixar Aplicativo Android
+      </a> -->
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn" id="themeBtn" aria-label="Alternar tema claro e escuro">🌙</button>
+        <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">☰</button>
       </div>
     </div>
+  </header>
 
-    <div class="phone-wrap">
-      <div class="phone" id="app" aria-label="Simulador do aplicativo em um celular">
-        <div class="screen">
-          <div class="screen-body" id="screenBody"></div>
+  <main>
+    <!-- ================= HERO + CELULAR ================= -->
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div>
+          <svg class="hero-icon" aria-hidden="true">
+            <use href="#mark" />
+          </svg>
+          <h1>Papo Cristão</h1>
+          <p class="tagline">Uma palavra de fé para começar bem o dia.</p>
+          <p class="lead">Um momento de paz na sua rotina: um versículo, um pensamento curto e um convite para respirar
+            fundo e seguir com esperança.</p>
+          <div class="hero-buttons">
+            <a href="https://github.com/Abeck51/papo-cristao/releases/download/v1.0.0/app-release.apk" class="btn"
+              data-goto="hoje">Abrir app</a>
+            <button class="btn btn-ghost" data-open="dlgMobile">Usar no celular</button>
+            <a href="#como-funciona" class="btn btn-link">Como funciona →</a>
+          </div>
+        </div>
 
-          <nav class="ph-nav" aria-label="Navegação do app">
-            <button data-nav="hoje"><svg><use href="#i-home"/></svg>Hoje</button>
-            <button data-nav="chat"><svg><use href="#i-chat"/></svg>Chat</button>
-            <button data-nav="reflexoes"><svg><use href="#i-clock"/></svg>Reflexões</button>
-            <button data-nav="favoritos"><svg><use href="#i-heart"/></svg>Favoritos</button>
-          </nav>
+        <div class="phone-wrap">
+          <div class="phone" id="app" aria-label="Simulador do aplicativo em um celular">
+            <div class="screen">
+              <div class="screen-body" id="screenBody"></div>
 
-          <!-- Modal que abre dentro da tela do celular -->
-          <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
-            <div class="sheet-card" id="sheetCard"></div>
+              <nav class="ph-nav" aria-label="Navegação do app">
+                <button data-nav="hoje"><svg>
+                    <use href="#i-home" />
+                  </svg>Hoje</button>
+                <button data-nav="chat"><svg>
+                    <use href="#i-chat" />
+                  </svg>Chat</button>
+                <button data-nav="reflexoes"><svg>
+                    <use href="#i-clock" />
+                  </svg>Reflexões</button>
+                <button data-nav="favoritos"><svg>
+                    <use href="#i-heart" />
+                  </svg>Favoritos</button>
+              </nav>
+
+              <!-- Modal que abre dentro da tela do celular -->
+              <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+                <div class="sheet-card" id="sheetCard"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+    </section>
+
+    <div class="quote-band reveal">
+      Uma pausa para você.
+      <span>Uma palavra para o coração.</span>
     </div>
-  </div>
-</section>
 
-<div class="quote-band reveal">
-  Uma pausa para você.
-  <span>Uma palavra para o coração.</span>
-</div>
+    <!-- ================= COMO FUNCIONA ================= -->
+    <section class="section alt" id="como-funciona">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">Como funciona</div>
+          <h2>Pequenos momentos. Uma fé que se renova.</h2>
+        </div>
+        <div class="cards-3">
+          <article class="card reveal">
+            <div class="step-num">1</div>
+            <h3>Comece com uma palavra</h3>
+            <p>Ao abrir o app, você recebe a palavra do dia com um pensamento curto para levar na rotina.</p>
+          </article>
+          <article class="card reveal">
+            <div class="step-num">2</div>
+            <h3>Guarde o que tocou você</h3>
+            <p>Toque no coração para favoritar uma reflexão e reler quando precisar de ânimo.</p>
+          </article>
+          <article class="card reveal">
+            <div class="step-num">3</div>
+            <h3>Leve esperança a alguém</h3>
+            <p>Compartilhe a palavra com quem você ama. Um gesto simples pode mudar o dia de alguém.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-<!-- ================= COMO FUNCIONA ================= -->
-<section class="section alt" id="como-funciona">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="eyebrow">Como funciona</div>
-      <h2>Pequenos momentos. Uma fé que se renova.</h2>
+    <!-- ================= RECURSOS ================= -->
+    <section class="section" id="recursos">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">Recursos</div>
+          <h2>Fé e cuidado em cada detalhe</h2>
+          <p>Tudo pensado para ser leve, acolhedor e fácil de usar.</p>
+        </div>
+        <div class="cards-4">
+          <article class="card reveal">
+            <div class="ico">🌅</div>
+            <h3>Reflexão do dia</h3>
+            <p>Uma nova palavra a cada manhã, com versículo e pensamento.</p>
+          </article>
+          <article class="card reveal">
+            <div class="ico">🤗</div>
+            <h3>Palavras que acolhem</h3>
+            <p>Textos curtos, em linguagem gentil e sem julgamentos.</p>
+          </article>
+          <article class="card reveal">
+            <div class="ico">♥</div>
+            <h3>Seus favoritos</h3>
+            <p>Guarde as mensagens que falaram ao seu coração.</p>
+          </article>
+          <article class="card reveal">
+            <div class="ico">📖</div>
+            <h3>Outras reflexões</h3>
+            <p>Navegue por temas como fé, paz, coragem e gratidão.</p>
+          </article>
+          <article class="card reveal">
+            <div class="ico">🔗</div>
+            <h3>Compartilhe esperança</h3>
+            <p>Envie a palavra do dia para amigos e familiares em um toque.</p>
+          </article>
+          <article class="card reveal">
+            <div class="ico">🐢</div>
+            <h3>No seu ritmo</h3>
+            <p>Sem metas, sem cobranças. Leia quando fizer sentido para você.</p>
+          </article>
+          <article class="card reveal">
+            <div class="ico">🕊️</div>
+            <h3>Simples e acolhedor</h3>
+            <p>Visual calmo, leitura confortável e modo escuro para a noite.</p>
+          </article>
+          <article class="card reveal">
+            <div class="ico">🤝</div>
+            <h3>Com respeito</h3>
+            <p>Sem anúncios, sem pressão e sem pedir seus dados.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= INSTALAR / CTA ================= -->
+    <section class="section alt cta" id="instalar">
+      <div class="container">
+        <svg class="cta-icon reveal" aria-hidden="true">
+          <use href="#mark" />
+        </svg>
+        <h2 class="reveal">Uma palavra de fé, onde você estiver</h2>
+        <div class="row reveal">
+          <a href="#app" class="btn" data-goto="hoje">Começar a leitura</a>
+          <button class="btn btn-ghost" data-open="dlgMobile">Usar no celular</button>
+        </div>
+        <div class="cards-3" style="text-align:left">
+          <article class="card reveal">
+            <div class="ico">🌐</div>
+            <h3>Pelo navegador</h3>
+            <p>Abra o site em qualquer computador, tablet ou celular, sem instalar nada.</p>
+          </article>
+          <article class="card reveal">
+            <div class="ico">📱</div>
+            <h3>No seu celular</h3>
+            <p>Adicione um atalho à tela inicial e abra como se fosse um aplicativo.</p>
+          </article>
+          <article class="card reveal">
+            <div class="ico">🛠️</div>
+            <h3>Um projeto em construção</h3>
+            <p>Estamos evoluindo aos poucos. Novas reflexões e recursos virão com o tempo.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PRIVACIDADE ================= -->
+    <section class="section" id="privacidade">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">Privacidade</div>
+          <h2>Privacidade e confiança</h2>
+          <p>Você lê em paz, sem entregar nada em troca.</p>
+        </div>
+        <div class="privacy-list">
+          <div class="privacy-item reveal"><span class="ico">🚫</span>
+            <div>
+              <h3>Nenhum cadastro</h3>
+              <p>Não pedimos nome, e-mail ou senha para você usar o app.</p>
+            </div>
+          </div>
+          <div class="privacy-item reveal"><span class="ico">⏳</span>
+            <div>
+              <h3>Favoritos só na sessão</h3>
+              <p>Suas reflexões favoritas ficam apenas no seu navegador e somem quando a sessão termina.</p>
+            </div>
+          </div>
+          <div class="privacy-item reveal"><span class="ico">🎓</span>
+            <div>
+              <h3>Projeto educativo</h3>
+              <p>Criado para fins de estudo de HTML, CSS e JavaScript, sem vínculo com qualquer outro site ou marca.</p>
+            </div>
+          </div>
+        </div>
+        <div class="privacy-links">
+          <button class="btn btn-link" data-open="dlgPrivacy">Política de Privacidade</button>
+          <button class="btn btn-link" data-open="dlgTerms">Termos de Uso</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section class="section alt" id="faq">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">Dúvidas</div>
+          <h2>Perguntas frequentes</h2>
+        </div>
+        <div class="faq reveal">
+          <details>
+            <summary>Preciso instalar para ler?</summary>
+            <p>Não. Basta abrir o site no navegador. Se quiser, você pode adicionar um atalho à tela inicial do celular.
+            </p>
+          </details>
+          <details>
+            <summary>Posso guardar uma reflexão?</summary>
+            <p>Sim. Toque no coração de qualquer reflexão e ela aparece na aba Favoritos durante a sua sessão.</p>
+          </details>
+          <details>
+            <summary>Funciona sem internet?</summary>
+            <p>Como todo o conteúdo está dentro da própria página, depois de aberta ela continua funcionando sem conexão
+              enquanto estiver carregada no navegador.</p>
+          </details>
+          <details>
+            <summary>Existe uma versão para Android?</summary>
+            <p>Ainda não existe um aplicativo na loja. Por enquanto, use pelo navegador ou adicione o atalho à tela
+              inicial.</p>
+          </details>
+          <details>
+            <summary>O que é o Papo Cristão?</summary>
+            <p>É um projeto educativo independente que oferece uma palavra de fé por dia, com versículo e pensamento
+              curto, em um espaço simples e acolhedor.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= RODAPÉ ================= -->
+  <footer class="footer">
+    <div class="container">
+      <div>
+        <a href="#inicio" class="logo"><svg>
+            <use href="#mark" />
+          </svg> Papo Cristão</a>
+        <p>Feito com propósito. Projeto educativo independente.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#privacidade">Privacidade</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#inicio">Voltar ao início ↑</a>
+      </div>
     </div>
-    <div class="cards-3">
-      <article class="card reveal"><div class="step-num">1</div><h3>Comece com uma palavra</h3><p>Ao abrir o app, você recebe a palavra do dia com um pensamento curto para levar na rotina.</p></article>
-      <article class="card reveal"><div class="step-num">2</div><h3>Guarde o que tocou você</h3><p>Toque no coração para favoritar uma reflexão e reler quando precisar de ânimo.</p></article>
-      <article class="card reveal"><div class="step-num">3</div><h3>Leve esperança a alguém</h3><p>Compartilhe a palavra com quem você ama. Um gesto simples pode mudar o dia de alguém.</p></article>
-    </div>
-  </div>
-</section>
+  </footer>
 
-<!-- ================= RECURSOS ================= -->
-<section class="section" id="recursos">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="eyebrow">Recursos</div>
-      <h2>Fé e cuidado em cada detalhe</h2>
-      <p>Tudo pensado para ser leve, acolhedor e fácil de usar.</p>
-    </div>
-    <div class="cards-4">
-      <article class="card reveal"><div class="ico">🌅</div><h3>Reflexão do dia</h3><p>Uma nova palavra a cada manhã, com versículo e pensamento.</p></article>
-      <article class="card reveal"><div class="ico">🤗</div><h3>Palavras que acolhem</h3><p>Textos curtos, em linguagem gentil e sem julgamentos.</p></article>
-      <article class="card reveal"><div class="ico">♥</div><h3>Seus favoritos</h3><p>Guarde as mensagens que falaram ao seu coração.</p></article>
-      <article class="card reveal"><div class="ico">📖</div><h3>Outras reflexões</h3><p>Navegue por temas como fé, paz, coragem e gratidão.</p></article>
-      <article class="card reveal"><div class="ico">🔗</div><h3>Compartilhe esperança</h3><p>Envie a palavra do dia para amigos e familiares em um toque.</p></article>
-      <article class="card reveal"><div class="ico">🐢</div><h3>No seu ritmo</h3><p>Sem metas, sem cobranças. Leia quando fizer sentido para você.</p></article>
-      <article class="card reveal"><div class="ico">🕊️</div><h3>Simples e acolhedor</h3><p>Visual calmo, leitura confortável e modo escuro para a noite.</p></article>
-      <article class="card reveal"><div class="ico">🤝</div><h3>Com respeito</h3><p>Sem anúncios, sem pressão e sem pedir seus dados.</p></article>
-    </div>
-  </div>
-</section>
+  <!-- ================= MODAIS DA PÁGINA ================= -->
+  <dialog id="dlgMobile">
+    <button class="icon-btn close" data-close aria-label="Fechar">✕</button>
+    <h2>Usar no celular</h2>
+    <p>Adicione o Papo Cristão à tela inicial e abra com um toque.</p>
+    <h3>iPhone (Safari)</h3>
+    <ol>
+      <li>Toque no botão de compartilhar.</li>
+      <li>Escolha “Adicionar à Tela de Início”.</li>
+      <li>Confirme em “Adicionar”.</li>
+    </ol>
+    <h3>Android (Chrome)</h3>
+    <ol>
+      <li>Toque no menu de três pontos.</li>
+      <li>Escolha “Adicionar à tela inicial”.</li>
+      <li>Confirme em “Adicionar”.</li>
+    </ol>
+  </dialog>
 
-<!-- ================= INSTALAR / CTA ================= -->
-<section class="section alt cta" id="instalar">
-  <div class="container">
-    <svg class="cta-icon reveal" aria-hidden="true"><use href="#mark"/></svg>
-    <h2 class="reveal">Uma palavra de fé, onde você estiver</h2>
-    <div class="row reveal">
-      <a href="#app" class="btn" data-goto="hoje">Começar a leitura</a>
-      <button class="btn btn-ghost" data-open="dlgMobile">Usar no celular</button>
-    </div>
-    <div class="cards-3" style="text-align:left">
-      <article class="card reveal"><div class="ico">🌐</div><h3>Pelo navegador</h3><p>Abra o site em qualquer computador, tablet ou celular, sem instalar nada.</p></article>
-      <article class="card reveal"><div class="ico">📱</div><h3>No seu celular</h3><p>Adicione um atalho à tela inicial e abra como se fosse um aplicativo.</p></article>
-      <article class="card reveal"><div class="ico">🛠️</div><h3>Um projeto em construção</h3><p>Estamos evoluindo aos poucos. Novas reflexões e recursos virão com o tempo.</p></article>
-    </div>
-  </div>
-</section>
+  <dialog id="dlgPrivacy">
+    <button class="icon-btn close" data-close aria-label="Fechar">✕</button>
+    <h2>Política de Privacidade</h2>
+    <p>Este é um projeto educativo e não coleta dados pessoais.</p>
+    <h3>O que guardamos</h3>
+    <ul>
+      <li>Os favoritos ficam apenas na sessão do seu navegador.</li>
+      <li>A preferência de tema (claro ou escuro) é salva no seu aparelho.</li>
+    </ul>
+    <h3>O que não fazemos</h3>
+    <ul>
+      <li>Não pedimos cadastro.</li>
+      <li>Não enviamos dados para nenhum servidor.</li>
+      <li>Não usamos anúncios ou rastreadores.</li>
+    </ul>
+  </dialog>
 
-<!-- ================= PRIVACIDADE ================= -->
-<section class="section" id="privacidade">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="eyebrow">Privacidade</div>
-      <h2>Privacidade e confiança</h2>
-      <p>Você lê em paz, sem entregar nada em troca.</p>
-    </div>
-    <div class="privacy-list">
-      <div class="privacy-item reveal"><span class="ico">🚫</span><div><h3>Nenhum cadastro</h3><p>Não pedimos nome, e-mail ou senha para você usar o app.</p></div></div>
-      <div class="privacy-item reveal"><span class="ico">⏳</span><div><h3>Favoritos só na sessão</h3><p>Suas reflexões favoritas ficam apenas no seu navegador e somem quando a sessão termina.</p></div></div>
-      <div class="privacy-item reveal"><span class="ico">🎓</span><div><h3>Projeto educativo</h3><p>Criado para fins de estudo de HTML, CSS e JavaScript, sem vínculo com qualquer outro site ou marca.</p></div></div>
-    </div>
-    <div class="privacy-links">
-      <button class="btn btn-link" data-open="dlgPrivacy">Política de Privacidade</button>
-      <button class="btn btn-link" data-open="dlgTerms">Termos de Uso</button>
-    </div>
-  </div>
-</section>
+  <dialog id="dlgTerms">
+    <button class="icon-btn close" data-close aria-label="Fechar">✕</button>
+    <h2>Termos de Uso</h2>
+    <p>Ao usar este site, você concorda com os pontos abaixo.</p>
+    <ul>
+      <li>O conteúdo tem caráter devocional e educativo.</li>
+      <li>O chat é um conteúdo exclusivo do aplicativo e não está disponível nesta versão.</li>
+      <li>Em momentos de crise, procure ajuda profissional ou ligue para o CVV (188), 24 horas.</li>
+      <li>O projeto é independente e sem fins comerciais.</li>
+    </ul>
+  </dialog>
 
-<!-- ================= FAQ ================= -->
-<section class="section alt" id="faq">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="eyebrow">Dúvidas</div>
-      <h2>Perguntas frequentes</h2>
-    </div>
-    <div class="faq reveal">
-      <details><summary>Preciso instalar para ler?</summary><p>Não. Basta abrir o site no navegador. Se quiser, você pode adicionar um atalho à tela inicial do celular.</p></details>
-      <details><summary>Posso guardar uma reflexão?</summary><p>Sim. Toque no coração de qualquer reflexão e ela aparece na aba Favoritos durante a sua sessão.</p></details>
-      <details><summary>Funciona sem internet?</summary><p>Como todo o conteúdo está dentro da própria página, depois de aberta ela continua funcionando sem conexão enquanto estiver carregada no navegador.</p></details>
-      <details><summary>Existe uma versão para Android?</summary><p>Ainda não existe um aplicativo na loja. Por enquanto, use pelo navegador ou adicione o atalho à tela inicial.</p></details>
-      <details><summary>O que é o Papo Cristão?</summary><p>É um projeto educativo independente que oferece uma palavra de fé por dia, com versículo e pensamento curto, em um espaço simples e acolhedor.</p></details>
-    </div>
-  </div>
-</section>
-</main>
+  <div class="toast" id="toast" role="status"></div>
 
-<!-- ================= RODAPÉ ================= -->
-<footer class="footer">
-  <div class="container">
-    <div>
-      <a href="#inicio" class="logo"><svg><use href="#mark"/></svg> Papo Cristão</a>
-      <p>Feito com propósito. Projeto educativo independente.</p>
-    </div>
-    <div class="footer-links">
-      <a href="#privacidade">Privacidade</a>
-      <a href="#como-funciona">Como funciona</a>
-      <a href="#inicio">Voltar ao início ↑</a>
-    </div>
-  </div>
-</footer>
+  <script>
+    /* =========================================================
+       DADOS
+       Para trocar o conteúdo, edite apenas este array.
+       Cada item tem: versículo, pensamento (lista de parágrafos) e oração.
+       Textos de pensamento e oração: originais deste projeto.
+       Versículos: tradução em domínio público.
+       ========================================================= */
+    const TEMAS = ["Todos", "Fé", "Paz", "Coragem", "Esperança", "Gratidão"];
 
-<!-- ================= MODAIS DA PÁGINA ================= -->
-<dialog id="dlgMobile">
-  <button class="icon-btn close" data-close aria-label="Fechar">✕</button>
-  <h2>Usar no celular</h2>
-  <p>Adicione o Papo Cristão à tela inicial e abra com um toque.</p>
-  <h3>iPhone (Safari)</h3>
-  <ol><li>Toque no botão de compartilhar.</li><li>Escolha “Adicionar à Tela de Início”.</li><li>Confirme em “Adicionar”.</li></ol>
-  <h3>Android (Chrome)</h3>
-  <ol><li>Toque no menu de três pontos.</li><li>Escolha “Adicionar à tela inicial”.</li><li>Confirme em “Adicionar”.</li></ol>
-</dialog>
+    const PALAVRAS = [
+      {
+        id: 1, tema: "Fé", ref: "2 Coríntios 11:30",
+        texto: "Se convém gloriar-me, gloriar-me-ei no que diz respeito à minha fraqueza.",
+        pensamento: [
+          "Admitir que não damos conta de tudo não enfraquece a fé; ela passa a ter onde se apoiar. Muitas vezes só aprendemos a confiar de verdade quando nossas próprias forças terminam.",
+          "Hoje, em vez de esconder o que o cansa, apresente a Deus exatamente como você está. É nesse lugar de honestidade que a força verdadeira começa a agir."
+        ],
+        oracao: "Senhor, eu reconheço os meus limites e confio em Ti. Onde me falta força, sustenta-me. Onde me falta sabedoria, guia-me. Que a Tua graça seja suficiente para o meu dia de hoje. Amém."
+      },
+      {
+        id: 2, tema: "Paz", ref: "Salmos 23:1",
+        texto: "O Senhor é o meu pastor; nada me faltará.",
+        pensamento: [
+          "Quem é conduzido não precisa conhecer todo o caminho. Basta confiar em quem caminha à frente e permanece ao lado nas partes difíceis da estrada.",
+          "Se hoje o futuro parece nebuloso, lembre-se: um pastor não perde as suas ovelhas de vista. Descanse no cuidado, mesmo sem ter todas as respostas."
+        ],
+        oracao: "Pai amado, obrigado por cuidares de mim como um pastor. Conduz os meus passos, acalma o meu coração e ensina-me a descansar na Tua provisão. Amém."
+      },
+      {
+        id: 3, tema: "Coragem", ref: "Josué 1:9",
+        texto: "Esforça-te, e tem bom ânimo; não temas, nem te espantes, porque o Senhor teu Deus é contigo.",
+        pensamento: [
+          "Coragem não é a ausência de medo, e sim a decisão de seguir em frente mesmo com o coração acelerado. O que sustenta quem avança é saber que não está sozinho.",
+          "Pense em uma coisa que você tem adiado por receio. Dê hoje apenas o primeiro passo, pequeno e honesto. O resto se revela caminhando."
+        ],
+        oracao: "Deus de força, quando o medo apertar, lembra-me de que estás comigo. Dá-me coragem para dar o próximo passo e confiança para deixar o resultado em Tuas mãos. Amém."
+      },
+      {
+        id: 4, tema: "Paz", ref: "João 14:27",
+        texto: "Deixo-vos a paz, a minha paz vos dou.",
+        pensamento: [
+          "A paz que Jesus oferece não depende de um dia tranquilo. Ela cabe no meio da correria, dos prazos e das conversas difíceis, porque nasce de dentro e não das circunstâncias.",
+          "Antes de começar as tarefas, respire fundo três vezes e receba essa paz como presente. Você não precisa conquistá-la, apenas aceitá-la."
+        ],
+        oracao: "Senhor Jesus, obrigado pela paz que o mundo não pode dar nem tirar. Guarda a minha mente e o meu coração neste dia. Amém."
+      },
+      {
+        id: 5, tema: "Fé", ref: "Provérbios 3:5",
+        texto: "Confia no Senhor de todo o teu coração, e não te estribes no teu próprio entendimento.",
+        pensamento: [
+          "Existem manhãs em que acordamos com mais perguntas do que respostas. A tentação é esperar entender tudo antes de agir, mas a fé funciona como uma lanterna: ilumina o próximo passo, nunca a estrada inteira.",
+          "Escolha hoje uma preocupação para entregar. Você não precisa resolver tudo antes do almoço."
+        ],
+        oracao: "Pai, entrego a Ti o que não consigo controlar. Ajuda-me a confiar quando não entendo e a caminhar quando não vejo. Amém."
+      },
+      {
+        id: 6, tema: "Esperança", ref: "Lamentações 3:22-23",
+        texto: "As suas misericórdias não têm fim; novas são cada manhã.",
+        pensamento: [
+          "Ontem pode ter sido pesado, mas a manhã chega sem perguntar o que aconteceu antes. Ela oferece uma página em branco e a chance de recomeçar.",
+          "Esperança não é otimismo ingênuo. É a decisão de acreditar que ainda há bem pela frente. Comece pequeno: abra a janela, respire e agradeça por mais um dia."
+        ],
+        oracao: "Senhor, obrigado porque a Tua misericórdia se renova a cada manhã. Perdoa os meus erros de ontem e dá-me ânimo para recomeçar hoje. Amém."
+      },
+      {
+        id: 7, tema: "Fé", ref: "Filipenses 4:13",
+        texto: "Posso todas as coisas em Cristo que me fortalece.",
+        pensamento: [
+          "Esse versículo não promete que faremos tudo sozinhos. Ele diz que a força vem de quem nos sustenta. Pedir ajuda, por isso, também é um ato de fé.",
+          "Se algo hoje parece grande demais, divida em partes pequenas e entregue cada uma em oração."
+        ],
+        oracao: "Deus, eu preciso da Tua força. Fortalece as minhas mãos para o trabalho e o meu coração para as dificuldades. Amém."
+      },
+      {
+        id: 8, tema: "Gratidão", ref: "1 Tessalonicenses 5:18",
+        texto: "Em tudo dai graças, porque esta é a vontade de Deus em Cristo Jesus para convosco.",
+        pensamento: [
+          "Gratidão não nega as dificuldades; apenas se recusa a deixá-las contar a história inteira. Quando agradecemos, o olhar passa a procurar o que já temos em vez do que falta.",
+          "Experimente anotar três coisas boas de hoje. Podem ser simples, como um café quente ou uma mensagem carinhosa."
+        ],
+        oracao: "Pai, obrigado pelo ar que respiro, pelas pessoas que amo e pelas pequenas bênçãos que quase não percebo. Abre os meus olhos para a Tua bondade. Amém."
+      },
+      {
+        id: 9, tema: "Esperança", ref: "Romanos 15:13",
+        texto: "O Deus de esperança vos encha de todo o gozo e paz em crença.",
+        pensamento: [
+          "A esperança cristã é uma âncora, não um enfeite. Ela mantém o coração firme quando as ondas sobem e lembra que nenhuma tempestade dura para sempre.",
+          "Hoje, ofereça esperança a alguém com uma palavra gentil. Muitas vezes, quem consola também é consolado."
+        ],
+        oracao: "Deus de esperança, enche o meu coração de alegria e paz. Que a minha vida seja um sinal da Tua luz para quem está ao meu redor. Amém."
+      },
+      {
+        id: 10, tema: "Paz", ref: "1 Pedro 5:7",
+        texto: "Lançando sobre ele toda a vossa ansiedade, porque ele tem cuidado de vós.",
+        pensamento: [
+          "Algumas cargas só pesam porque insistimos em segurá-las. Lançar a ansiedade não significa ignorar os problemas, e sim lembrar que não precisamos carregá-los sozinhos.",
+          "Respire fundo e solte. Diga em voz baixa o que está pesando e deixe que seja cuidado."
+        ],
+        oracao: "Senhor, eu lanço sobre Ti as minhas preocupações. Troca a minha ansiedade pela Tua paz e cuida do que eu não consigo resolver. Amém."
+      },
+      {
+        id: 11, tema: "Coragem", ref: "Salmos 27:1",
+        texto: "O Senhor é a minha luz e a minha salvação; de quem terei temor?",
+        pensamento: [
+          "Quando a luz está acesa por dentro, a escuridão lá fora perde o poder de assustar. A confiança em Deus não elimina os desafios, mas muda a forma como os encaramos.",
+          "Pense em um medo que ronda os seus pensamentos e leve-o à luz da oração. Muita coisa diminui quando é dita em voz alta."
+        ],
+        oracao: "Senhor, sê a minha luz nos lugares escuros. Livra-me do medo e ensina-me a caminhar com firmeza, sabendo que estás comigo. Amém."
+      },
+      {
+        id: 12, tema: "Gratidão", ref: "Salmos 118:24",
+        texto: "Este é o dia que fez o Senhor; regozijemo-nos e alegremo-nos nele.",
+        pensamento: [
+          "Hoje nunca aconteceu antes. Receba-o como um presente, mesmo que venha embrulhado em tarefas, trânsito e imprevistos.",
+          "Alegria nem sempre é euforia. Muitas vezes é a calma de perceber que ainda há motivos para sorrir."
+        ],
+        oracao: "Senhor, obrigado por este novo dia. Que eu viva cada momento com atenção, alegria e gratidão. Amém."
+      },
+    ];
 
-<dialog id="dlgPrivacy">
-  <button class="icon-btn close" data-close aria-label="Fechar">✕</button>
-  <h2>Política de Privacidade</h2>
-  <p>Este é um projeto educativo e não coleta dados pessoais.</p>
-  <h3>O que guardamos</h3>
-  <ul><li>Os favoritos ficam apenas na sessão do seu navegador.</li><li>A preferência de tema (claro ou escuro) é salva no seu aparelho.</li></ul>
-  <h3>O que não fazemos</h3>
-  <ul><li>Não pedimos cadastro.</li><li>Não enviamos dados para nenhum servidor.</li><li>Não usamos anúncios ou rastreadores.</li></ul>
-</dialog>
+    /* =========================================================
+       UTILIDADES
+       ========================================================= */
+    const $ = (s, el = document) => el.querySelector(s);
+    const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+    const porId = id => PALAVRAS.find(p => p.id === Number(id));
+    const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    const icone = (nome) => `<svg aria-hidden="true"><use href="#i-${nome}"/></svg>`;
 
-<dialog id="dlgTerms">
-  <button class="icon-btn close" data-close aria-label="Fechar">✕</button>
-  <h2>Termos de Uso</h2>
-  <p>Ao usar este site, você concorda com os pontos abaixo.</p>
-  <ul>
-    <li>O conteúdo tem caráter devocional e educativo.</li>
-    <li>O chat é um conteúdo exclusivo do aplicativo e não está disponível nesta versão.</li>
-    <li>Em momentos de crise, procure ajuda profissional ou ligue para o CVV (188), 24 horas.</li>
-    <li>O projeto é independente e sem fins comerciais.</li>
-  </ul>
-</dialog>
+    function toast(msg) {
+      const t = $("#toast");
+      t.textContent = msg;
+      t.classList.add("show");
+      clearTimeout(toast.t);
+      toast.t = setTimeout(() => t.classList.remove("show"), 2200);
+    }
 
-<div class="toast" id="toast" role="status"></div>
+    /* Favoritos só na sessão (sessionStorage) */
+    const Favs = {
+      lista() { try { return JSON.parse(sessionStorage.getItem("pc_favs")) || []; } catch { return []; } },
+      tem(id) { return this.lista().includes(Number(id)); },
+      alternar(id) {
+        id = Number(id);
+        const l = this.lista(), i = l.indexOf(id);
+        i >= 0 ? l.splice(i, 1) : l.push(id);
+        try { sessionStorage.setItem("pc_favs", JSON.stringify(l)); } catch { }
+        return i < 0;
+      },
+    };
 
-<script>
-/* =========================================================
-   DADOS
-   Para trocar o conteúdo, edite apenas este array.
-   Cada item tem: versículo, pensamento (lista de parágrafos) e oração.
-   Textos de pensamento e oração: originais deste projeto.
-   Versículos: tradução em domínio público.
-   ========================================================= */
-const TEMAS = ["Todos", "Fé", "Paz", "Coragem", "Esperança", "Gratidão"];
+    function palavraDoDia() {
+      const hoje = new Date();
+      const dia = Math.floor((hoje - new Date(hoje.getFullYear(), 0, 0)) / 86400000);
+      return PALAVRAS[dia % PALAVRAS.length];
+    }
+    const saudacao = () => { const h = new Date().getHours(); return h < 12 ? "Bom dia" : h < 18 ? "Boa tarde" : "Boa noite"; };
+    const dataExtenso = () => new Date().toLocaleDateString("pt-BR", { day: "numeric", month: "long", year: "numeric" });
 
-const PALAVRAS = [
-  { id: 1, tema: "Fé", ref: "2 Coríntios 11:30",
-    texto: "Se convém gloriar-me, gloriar-me-ei no que diz respeito à minha fraqueza.",
-    pensamento: [
-      "Admitir que não damos conta de tudo não enfraquece a fé; ela passa a ter onde se apoiar. Muitas vezes só aprendemos a confiar de verdade quando nossas próprias forças terminam.",
-      "Hoje, em vez de esconder o que o cansa, apresente a Deus exatamente como você está. É nesse lugar de honestidade que a força verdadeira começa a agir."
-    ],
-    oracao: "Senhor, eu reconheço os meus limites e confio em Ti. Onde me falta força, sustenta-me. Onde me falta sabedoria, guia-me. Que a Tua graça seja suficiente para o meu dia de hoje. Amém." },
-  { id: 2, tema: "Paz", ref: "Salmos 23:1",
-    texto: "O Senhor é o meu pastor; nada me faltará.",
-    pensamento: [
-      "Quem é conduzido não precisa conhecer todo o caminho. Basta confiar em quem caminha à frente e permanece ao lado nas partes difíceis da estrada.",
-      "Se hoje o futuro parece nebuloso, lembre-se: um pastor não perde as suas ovelhas de vista. Descanse no cuidado, mesmo sem ter todas as respostas."
-    ],
-    oracao: "Pai amado, obrigado por cuidares de mim como um pastor. Conduz os meus passos, acalma o meu coração e ensina-me a descansar na Tua provisão. Amém." },
-  { id: 3, tema: "Coragem", ref: "Josué 1:9",
-    texto: "Esforça-te, e tem bom ânimo; não temas, nem te espantes, porque o Senhor teu Deus é contigo.",
-    pensamento: [
-      "Coragem não é a ausência de medo, e sim a decisão de seguir em frente mesmo com o coração acelerado. O que sustenta quem avança é saber que não está sozinho.",
-      "Pense em uma coisa que você tem adiado por receio. Dê hoje apenas o primeiro passo, pequeno e honesto. O resto se revela caminhando."
-    ],
-    oracao: "Deus de força, quando o medo apertar, lembra-me de que estás comigo. Dá-me coragem para dar o próximo passo e confiança para deixar o resultado em Tuas mãos. Amém." },
-  { id: 4, tema: "Paz", ref: "João 14:27",
-    texto: "Deixo-vos a paz, a minha paz vos dou.",
-    pensamento: [
-      "A paz que Jesus oferece não depende de um dia tranquilo. Ela cabe no meio da correria, dos prazos e das conversas difíceis, porque nasce de dentro e não das circunstâncias.",
-      "Antes de começar as tarefas, respire fundo três vezes e receba essa paz como presente. Você não precisa conquistá-la, apenas aceitá-la."
-    ],
-    oracao: "Senhor Jesus, obrigado pela paz que o mundo não pode dar nem tirar. Guarda a minha mente e o meu coração neste dia. Amém." },
-  { id: 5, tema: "Fé", ref: "Provérbios 3:5",
-    texto: "Confia no Senhor de todo o teu coração, e não te estribes no teu próprio entendimento.",
-    pensamento: [
-      "Existem manhãs em que acordamos com mais perguntas do que respostas. A tentação é esperar entender tudo antes de agir, mas a fé funciona como uma lanterna: ilumina o próximo passo, nunca a estrada inteira.",
-      "Escolha hoje uma preocupação para entregar. Você não precisa resolver tudo antes do almoço."
-    ],
-    oracao: "Pai, entrego a Ti o que não consigo controlar. Ajuda-me a confiar quando não entendo e a caminhar quando não vejo. Amém." },
-  { id: 6, tema: "Esperança", ref: "Lamentações 3:22-23",
-    texto: "As suas misericórdias não têm fim; novas são cada manhã.",
-    pensamento: [
-      "Ontem pode ter sido pesado, mas a manhã chega sem perguntar o que aconteceu antes. Ela oferece uma página em branco e a chance de recomeçar.",
-      "Esperança não é otimismo ingênuo. É a decisão de acreditar que ainda há bem pela frente. Comece pequeno: abra a janela, respire e agradeça por mais um dia."
-    ],
-    oracao: "Senhor, obrigado porque a Tua misericórdia se renova a cada manhã. Perdoa os meus erros de ontem e dá-me ânimo para recomeçar hoje. Amém." },
-  { id: 7, tema: "Fé", ref: "Filipenses 4:13",
-    texto: "Posso todas as coisas em Cristo que me fortalece.",
-    pensamento: [
-      "Esse versículo não promete que faremos tudo sozinhos. Ele diz que a força vem de quem nos sustenta. Pedir ajuda, por isso, também é um ato de fé.",
-      "Se algo hoje parece grande demais, divida em partes pequenas e entregue cada uma em oração."
-    ],
-    oracao: "Deus, eu preciso da Tua força. Fortalece as minhas mãos para o trabalho e o meu coração para as dificuldades. Amém." },
-  { id: 8, tema: "Gratidão", ref: "1 Tessalonicenses 5:18",
-    texto: "Em tudo dai graças, porque esta é a vontade de Deus em Cristo Jesus para convosco.",
-    pensamento: [
-      "Gratidão não nega as dificuldades; apenas se recusa a deixá-las contar a história inteira. Quando agradecemos, o olhar passa a procurar o que já temos em vez do que falta.",
-      "Experimente anotar três coisas boas de hoje. Podem ser simples, como um café quente ou uma mensagem carinhosa."
-    ],
-    oracao: "Pai, obrigado pelo ar que respiro, pelas pessoas que amo e pelas pequenas bênçãos que quase não percebo. Abre os meus olhos para a Tua bondade. Amém." },
-  { id: 9, tema: "Esperança", ref: "Romanos 15:13",
-    texto: "O Deus de esperança vos encha de todo o gozo e paz em crença.",
-    pensamento: [
-      "A esperança cristã é uma âncora, não um enfeite. Ela mantém o coração firme quando as ondas sobem e lembra que nenhuma tempestade dura para sempre.",
-      "Hoje, ofereça esperança a alguém com uma palavra gentil. Muitas vezes, quem consola também é consolado."
-    ],
-    oracao: "Deus de esperança, enche o meu coração de alegria e paz. Que a minha vida seja um sinal da Tua luz para quem está ao meu redor. Amém." },
-  { id: 10, tema: "Paz", ref: "1 Pedro 5:7",
-    texto: "Lançando sobre ele toda a vossa ansiedade, porque ele tem cuidado de vós.",
-    pensamento: [
-      "Algumas cargas só pesam porque insistimos em segurá-las. Lançar a ansiedade não significa ignorar os problemas, e sim lembrar que não precisamos carregá-los sozinhos.",
-      "Respire fundo e solte. Diga em voz baixa o que está pesando e deixe que seja cuidado."
-    ],
-    oracao: "Senhor, eu lanço sobre Ti as minhas preocupações. Troca a minha ansiedade pela Tua paz e cuida do que eu não consigo resolver. Amém." },
-  { id: 11, tema: "Coragem", ref: "Salmos 27:1",
-    texto: "O Senhor é a minha luz e a minha salvação; de quem terei temor?",
-    pensamento: [
-      "Quando a luz está acesa por dentro, a escuridão lá fora perde o poder de assustar. A confiança em Deus não elimina os desafios, mas muda a forma como os encaramos.",
-      "Pense em um medo que ronda os seus pensamentos e leve-o à luz da oração. Muita coisa diminui quando é dita em voz alta."
-    ],
-    oracao: "Senhor, sê a minha luz nos lugares escuros. Livra-me do medo e ensina-me a caminhar com firmeza, sabendo que estás comigo. Amém." },
-  { id: 12, tema: "Gratidão", ref: "Salmos 118:24",
-    texto: "Este é o dia que fez o Senhor; regozijemo-nos e alegremo-nos nele.",
-    pensamento: [
-      "Hoje nunca aconteceu antes. Receba-o como um presente, mesmo que venha embrulhado em tarefas, trânsito e imprevistos.",
-      "Alegria nem sempre é euforia. Muitas vezes é a calma de perceber que ainda há motivos para sorrir."
-    ],
-    oracao: "Senhor, obrigado por este novo dia. Que eu viva cada momento com atenção, alegria e gratidão. Amém." },
-];
+    async function compartilhar(p) {
+      const texto = `“${p.texto}” (${p.ref}) — Papo Cristão`;
+      if (navigator.share) {
+        try { await navigator.share({ title: "Papo Cristão", text: texto }); } catch { }
+      } else {
+        try { await navigator.clipboard.writeText(texto); toast("Copiado para compartilhar!"); }
+        catch { toast("Não foi possível copiar."); }
+      }
+    }
 
-/* =========================================================
-   UTILIDADES
-   ========================================================= */
-const $  = (s, el = document) => el.querySelector(s);
-const $$ = (s, el = document) => [...el.querySelectorAll(s)];
-const porId = id => PALAVRAS.find(p => p.id === Number(id));
-const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-const icone = (nome) => `<svg aria-hidden="true"><use href="#i-${nome}"/></svg>`;
+    /* =========================================================
+       TELAS DO CELULAR
+       ========================================================= */
+    const estado = { tela: "hoje", tema: "Todos", palavra: palavraDoDia() };
 
-function toast(msg) {
-  const t = $("#toast");
-  t.textContent = msg;
-  t.classList.add("show");
-  clearTimeout(toast.t);
-  toast.t = setTimeout(() => t.classList.remove("show"), 2200);
-}
-
-/* Favoritos só na sessão (sessionStorage) */
-const Favs = {
-  lista() { try { return JSON.parse(sessionStorage.getItem("pc_favs")) || []; } catch { return []; } },
-  tem(id) { return this.lista().includes(Number(id)); },
-  alternar(id) {
-    id = Number(id);
-    const l = this.lista(), i = l.indexOf(id);
-    i >= 0 ? l.splice(i, 1) : l.push(id);
-    try { sessionStorage.setItem("pc_favs", JSON.stringify(l)); } catch {}
-    return i < 0;
-  },
-};
-
-function palavraDoDia() {
-  const hoje = new Date();
-  const dia = Math.floor((hoje - new Date(hoje.getFullYear(), 0, 0)) / 86400000);
-  return PALAVRAS[dia % PALAVRAS.length];
-}
-const saudacao = () => { const h = new Date().getHours(); return h < 12 ? "Bom dia" : h < 18 ? "Boa tarde" : "Boa noite"; };
-const dataExtenso = () => new Date().toLocaleDateString("pt-BR", { day: "numeric", month: "long", year: "numeric" });
-
-async function compartilhar(p) {
-  const texto = `“${p.texto}” (${p.ref}) — Papo Cristão`;
-  if (navigator.share) {
-    try { await navigator.share({ title: "Papo Cristão", text: texto }); } catch {}
-  } else {
-    try { await navigator.clipboard.writeText(texto); toast("Copiado para compartilhar!"); }
-    catch { toast("Não foi possível copiar."); }
-  }
-}
-
-/* =========================================================
-   TELAS DO CELULAR
-   ========================================================= */
-const estado = { tela: "hoje", tema: "Todos", palavra: palavraDoDia() };
-
-function itemLista(p) {
-  const on = Favs.tem(p.id);
-  return `
+    function itemLista(p) {
+      const on = Favs.tem(p.id);
+      return `
   <article class="ph-item">
     <q>${esc(p.texto)}</q>
     <div class="ph-meta">
@@ -667,12 +1701,12 @@ function itemLista(p) {
       <button data-act="oracao" data-id="${p.id}">Oração</button>
     </div>
   </article>`;
-}
+    }
 
-const Telas = {
-  hoje() {
-    const p = estado.palavra, on = Favs.tem(p.id);
-    return `
+    const Telas = {
+      hoje() {
+        const p = estado.palavra, on = Favs.tem(p.id);
+        return `
       <h2 class="ph-title">${saudacao()},</h2>
       <p class="ph-date">${dataExtenso()}</p>
       <article class="ph-card">
@@ -689,165 +1723,166 @@ const Telas = {
         <button class="ph-pill" data-act="share" data-id="${p.id}">${icone("share")}Compartilhar</button>
         <button class="ph-pill" data-act="oracao" data-id="${p.id}">${icone("pray")}Oração</button>
       </div>`;
-  },
-  reflexoes() {
-    const lista = PALAVRAS.filter(p => estado.tema === "Todos" || p.tema === estado.tema);
-    return `
+      },
+      reflexoes() {
+        const lista = PALAVRAS.filter(p => estado.tema === "Todos" || p.tema === estado.tema);
+        return `
       <h2 class="ph-title" style="font-size:1.6rem">Reflexões</h2>
       <div class="ph-chips" role="group" aria-label="Filtrar por tema">
         ${TEMAS.map(t => `<button class="ph-chip ${t === estado.tema ? "active" : ""}" data-tema="${t}">${t}</button>`).join("")}
       </div>
       <div class="ph-list">${lista.map(itemLista).join("")}</div>`;
-  },
-  favoritos() {
-    const lista = Favs.lista().map(porId).filter(Boolean);
-    return `
+      },
+      favoritos() {
+        const lista = Favs.lista().map(porId).filter(Boolean);
+        return `
       <h2 class="ph-title" style="font-size:1.6rem;margin-bottom:1rem">Favoritos</h2>
       ${lista.length
-        ? `<div class="ph-list">${lista.map(itemLista).join("")}</div>`
-        : `<div class="ph-empty"><span class="big">♡</span>Você ainda não favoritou nada.<br>Toque no coração de uma reflexão para guardá-la aqui.<br><small>Os favoritos ficam só nesta sessão.</small></div>`}`;
-  },
-};
+            ? `<div class="ph-list">${lista.map(itemLista).join("")}</div>`
+            : `<div class="ph-empty"><span class="big">♡</span>Você ainda não favoritou nada.<br>Toque no coração de uma reflexão para guardá-la aqui.<br><small>Os favoritos ficam só nesta sessão.</small></div>`}`;
+      },
+    };
 
-function renderTela() {
-  const corpo = $("#screenBody");
-  corpo.innerHTML = Telas[estado.tela]();
-  corpo.style.animation = "none"; corpo.offsetHeight; corpo.style.animation = "";
-  corpo.scrollTop = 0;
-  $$(".ph-nav button").forEach(b => {
-    if (b.dataset.nav === estado.tela) b.setAttribute("aria-current", "page");
-    else b.removeAttribute("aria-current");
-  });
-}
+    function renderTela() {
+      const corpo = $("#screenBody");
+      corpo.innerHTML = Telas[estado.tela]();
+      corpo.style.animation = "none"; corpo.offsetHeight; corpo.style.animation = "";
+      corpo.scrollTop = 0;
+      $$(".ph-nav button").forEach(b => {
+        if (b.dataset.nav === estado.tela) b.setAttribute("aria-current", "page");
+        else b.removeAttribute("aria-current");
+      });
+    }
 
-/* =========================================================
-   MODAIS DENTRO DO CELULAR
-   ========================================================= */
-let gatilho = null;
+    /* =========================================================
+       MODAIS DENTRO DO CELULAR
+       ========================================================= */
+    let gatilho = null;
 
-function abrirSheet(html, centralizado = false) {
-  gatilho = document.activeElement;
-  const sheet = $("#sheet");
-  $("#sheetCard").innerHTML = `<button class="sheet-close" data-act="fechar" aria-label="Fechar">✕</button>${html}`;
-  sheet.classList.toggle("center", centralizado);
-  sheet.classList.add("open");
-  $("#sheetCard").scrollTop = 0;
-  $(".sheet-close", sheet).focus();
-}
-function fecharSheet() {
-  $("#sheet").classList.remove("open");
-  if (gatilho && document.body.contains(gatilho)) gatilho.focus();
-}
+    function abrirSheet(html, centralizado = false) {
+      gatilho = document.activeElement;
+      const sheet = $("#sheet");
+      $("#sheetCard").innerHTML = `<button class="sheet-close" data-act="fechar" aria-label="Fechar">✕</button>${html}`;
+      sheet.classList.toggle("center", centralizado);
+      sheet.classList.add("open");
+      $("#sheetCard").scrollTop = 0;
+      $(".sheet-close", sheet).focus();
+    }
+    function fecharSheet() {
+      $("#sheet").classList.remove("open");
+      if (gatilho && document.body.contains(gatilho)) gatilho.focus();
+    }
 
-function sheetPensamento(p) {
-  abrirSheet(`
+    function sheetPensamento(p) {
+      abrirSheet(`
     <span class="sheet-tag">Pensamento</span>
     <h3 id="sheetTitle">${esc(p.ref)}</h3>
     <p class="sheet-ref">“${esc(p.texto)}”</p>
     ${p.pensamento.map(par => `<p>${esc(par)}</p>`).join("")}
     <button class="ph-pill" data-act="fechar">Fechar</button>`);
-}
-function sheetOracao(p) {
-  abrirSheet(`
+    }
+    function sheetOracao(p) {
+      abrirSheet(`
     <span class="sheet-tag">Oração</span>
     <h3 id="sheetTitle">Oração do dia</h3>
     <p class="sheet-ref">${esc(p.ref)}</p>
     <p>${esc(p.oracao)}</p>
     <button class="ph-pill" data-act="fechar">Amém</button>`);
-}
-function sheetChat() {
-  abrirSheet(`
+    }
+    function sheetChat() {
+      abrirSheet(`
     <span class="big-ico" aria-hidden="true">💬</span>
     <h3 id="sheetTitle">Chat exclusivo do app</h3>
     <p>Este conteúdo é exclusivo para o aplicativo. Em breve você poderá conversar por lá.</p>
     <button class="ph-pill on" data-act="fechar">Entendi</button>`, true);
-}
-
-/* =========================================================
-   EVENTOS
-   ========================================================= */
-$("#app").addEventListener("click", e => {
-  // Clique no fundo escuro fecha o modal
-  if (e.target.id === "sheet") return fecharSheet();
-
-  const nav = e.target.closest("[data-nav]");
-  if (nav) {
-    if (nav.dataset.nav === "chat") return sheetChat();
-    estado.tela = nav.dataset.nav;
-    return renderTela();
-  }
-
-  const chip = e.target.closest("[data-tema]");
-  if (chip) { estado.tema = chip.dataset.tema; return renderTela(); }
-
-  const alvo = e.target.closest("[data-act]");
-  if (!alvo) return;
-  const p = porId(alvo.dataset.id);
-
-  switch (alvo.dataset.act) {
-    case "fechar":     return fecharSheet();
-    case "pensamento": return p && sheetPensamento(p);
-    case "oracao":     return p && sheetOracao(p);
-    case "share":      return p && compartilhar(p);
-    case "fav": {
-      const ligou = Favs.alternar(alvo.dataset.id);
-      toast(ligou ? "Adicionado aos favoritos" : "Removido dos favoritos");
-      const y = $("#screenBody").scrollTop;
-      renderTela();
-      $("#screenBody").scrollTop = y;
     }
-  }
-});
 
-document.addEventListener("keydown", e => {
-  if (e.key === "Escape" && $("#sheet").classList.contains("open")) fecharSheet();
-});
+    /* =========================================================
+       EVENTOS
+       ========================================================= */
+    $("#app").addEventListener("click", e => {
+      // Clique no fundo escuro fecha o modal
+      if (e.target.id === "sheet") return fecharSheet();
 
-/* =========================================================
-   NAVEGAÇÃO, MODAIS DA PÁGINA, TEMA, ANIMAÇÕES
-   ========================================================= */
-const navEl = $("#nav"), menuBtn = $("#menuBtn");
-menuBtn.addEventListener("click", () => {
-  const aberto = navEl.classList.toggle("open");
-  menuBtn.setAttribute("aria-expanded", aberto);
-});
-$$("#nav a").forEach(a => a.addEventListener("click", () => { navEl.classList.remove("open"); menuBtn.setAttribute("aria-expanded", false); }));
+      const nav = e.target.closest("[data-nav]");
+      if (nav) {
+        if (nav.dataset.nav === "chat") return sheetChat();
+        estado.tela = nav.dataset.nav;
+        return renderTela();
+      }
 
-// Botões "Abrir app" e "Começar a leitura" levam à tela Hoje
-$$("[data-goto]").forEach(b => b.addEventListener("click", () => { estado.tela = b.dataset.goto; renderTela(); }));
+      const chip = e.target.closest("[data-tema]");
+      if (chip) { estado.tema = chip.dataset.tema; return renderTela(); }
 
-$$("[data-open]").forEach(b => b.addEventListener("click", () => $("#" + b.dataset.open).showModal()));
-$$("dialog").forEach(d => d.addEventListener("click", e => { if (e.target === d || e.target.closest("[data-close]")) d.close(); }));
+      const alvo = e.target.closest("[data-act]");
+      if (!alvo) return;
+      const p = porId(alvo.dataset.id);
 
-function aplicarTema(t) {
-  document.documentElement.setAttribute("data-theme", t);
-  $("#themeBtn").textContent = t === "dark" ? "☀️" : "🌙";
-}
-let tema = "light";
-try { tema = localStorage.getItem("pc_tema") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"); } catch {}
-aplicarTema(tema);
-$("#themeBtn").addEventListener("click", () => {
-  const novo = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
-  aplicarTema(novo);
-  try { localStorage.setItem("pc_tema", novo); } catch {}
-});
+      switch (alvo.dataset.act) {
+        case "fechar": return fecharSheet();
+        case "pensamento": return p && sheetPensamento(p);
+        case "oracao": return p && sheetOracao(p);
+        case "share": return p && compartilhar(p);
+        case "fav": {
+          const ligou = Favs.alternar(alvo.dataset.id);
+          toast(ligou ? "Adicionado aos favoritos" : "Removido dos favoritos");
+          const y = $("#screenBody").scrollTop;
+          renderTela();
+          $("#screenBody").scrollTop = y;
+        }
+      }
+    });
 
-// Link ativo no menu conforme a rolagem
-const secoes = ["inicio", "como-funciona", "recursos", "instalar", "privacidade"].map(id => document.getElementById(id));
-const spy = new IntersectionObserver(entradas => {
-  entradas.forEach(en => {
-    if (en.isIntersecting) $$("#nav a").forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + en.target.id));
-  });
-}, { rootMargin: "-45% 0px -50% 0px" });
-secoes.forEach(s => spy.observe(s));
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape" && $("#sheet").classList.contains("open")) fecharSheet();
+    });
 
-// Revelar elementos ao rolar
-const revelador = new IntersectionObserver(entradas => {
-  entradas.forEach(en => { if (en.isIntersecting) { en.target.classList.add("in"); revelador.unobserve(en.target); } });
-}, { threshold: .12 });
-$$(".reveal").forEach(el => revelador.observe(el));
+    /* =========================================================
+       NAVEGAÇÃO, MODAIS DA PÁGINA, TEMA, ANIMAÇÕES
+       ========================================================= */
+    const navEl = $("#nav"), menuBtn = $("#menuBtn");
+    menuBtn.addEventListener("click", () => {
+      const aberto = navEl.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", aberto);
+    });
+    $$("#nav a").forEach(a => a.addEventListener("click", () => { navEl.classList.remove("open"); menuBtn.setAttribute("aria-expanded", false); }));
 
-renderTela();
-</script>
+    // Botões "Abrir app" e "Começar a leitura" levam à tela Hoje
+    $$("[data-goto]").forEach(b => b.addEventListener("click", () => { estado.tela = b.dataset.goto; renderTela(); }));
+
+    $$("[data-open]").forEach(b => b.addEventListener("click", () => $("#" + b.dataset.open).showModal()));
+    $$("dialog").forEach(d => d.addEventListener("click", e => { if (e.target === d || e.target.closest("[data-close]")) d.close(); }));
+
+    function aplicarTema(t) {
+      document.documentElement.setAttribute("data-theme", t);
+      $("#themeBtn").textContent = t === "dark" ? "☀️" : "🌙";
+    }
+    let tema = "light";
+    try { tema = localStorage.getItem("pc_tema") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"); } catch { }
+    aplicarTema(tema);
+    $("#themeBtn").addEventListener("click", () => {
+      const novo = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      aplicarTema(novo);
+      try { localStorage.setItem("pc_tema", novo); } catch { }
+    });
+
+    // Link ativo no menu conforme a rolagem
+    const secoes = ["inicio", "como-funciona", "recursos", "instalar", "privacidade"].map(id => document.getElementById(id));
+    const spy = new IntersectionObserver(entradas => {
+      entradas.forEach(en => {
+        if (en.isIntersecting) $$("#nav a").forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + en.target.id));
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    secoes.forEach(s => spy.observe(s));
+
+    // Revelar elementos ao rolar
+    const revelador = new IntersectionObserver(entradas => {
+      entradas.forEach(en => { if (en.isIntersecting) { en.target.classList.add("in"); revelador.unobserve(en.target); } });
+    }, { threshold: .12 });
+    $$(".reveal").forEach(el => revelador.observe(el));
+
+    renderTela();
+  </script>
 </body>
+
 </html>
