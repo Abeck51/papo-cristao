@@ -1743,6 +1743,20 @@
       },
     };
 
+    // Remove o #hash da URL após a rolagem suave
+$$('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth' });
+      // Remove o hash da barra de endereços sem recarregar a página
+      history.pushState("", document.title, window.location.pathname + window.location.search);
+    }
+  });
+});
+
     function renderTela() {
       const corpo = $("#screenBody");
       corpo.innerHTML = Telas[estado.tela]();
