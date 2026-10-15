@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: http://papocristao.com.br/sitemap.xml
